@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <br>
+    <!-- <div class="logo" style="text-align: center;">
+        <a href="index.html">
+          <img src="./assets/images/logo.png">
+        </a>
+    </div> -->
+    <title>RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints
+    </title>
+
+    <script>
+        var task_map = {
+            "simple-object-manipulation": "simple_object_manipulation",
+            "visual-goal-reaching": "visual_goal_reaching",
+            "novel-concept-grounding": "novel_concept_grounding",
+            "one-shot-video-imitation": "one_shot_video_imitation",
+            "visual-constraint-satisfaction": "visual_constraint_satisfaction",
+            "visual-reasoning": "visual_reasoning"
+        };
+
+        function updateDemoVideo(category) {
+            // var demo = document.getElementById("single-menu-demos").value;
+            var task = document.getElementById(category + "-menu-tasks").value;
+            var inst = document.getElementById(category + "-menu-instances").value;
+
+            console.log(task_map[category], task, inst)
+
+            var video = document.getElementById(category + "-single-task-video");
+            video.src = "assets/videos/demos/" +
+                task_map[category] +
+                "/" +
+                task +
+                "/" +
+                inst +
+                ".mp4";
+            video.playbackRate = 2.0;
+            video.play();
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+
+
+
+<body>
+    <!-- Title and Author -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">RoboFactory: Exploring Embodied Agent Collaboration with Compositional Constraints</h1>
+
+                        <!-- <h3 class="title is-4 conference-authors">
+                            <a target="_blank" href="https://cvpr.thecvf.com/Conferences/2025">CVPR 2025</a> -->
+                        </h3>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a target="_blank">Yiran&#160;Qin</a><sup>1*</sup>,
+                                <a target="_blank">Li&#160;Kang</a><sup>2*</sup>,
+                                <a target="_blank">Xiufeng&#160;Song</a><sup>3*</sup>,
+                                <br>
+                                <a target="_blank">Zhenfei&#160;Yin</a><sup>4</sup>,
+                                <a target="_blank">Xiaohong&#160;Liu</a><sup>3</sup>,
+                                <a target="_blank">Xihui&#160;Liu</a><sup>2,3</sup>,
+                                <a target="_blank">Ruimao&#160;Zhang</a><sup>2,3&#9993;</sup>,
+                                <a target="_blank">Lei&#160;Bai</a><sup>1&#9993;</sup>,
+                            </span>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Beihang University; </span>
+                            <span class="author-block"><sup>2</sup>Peking University; </span>
+                            <span class="author-block"><sup>3</sup>Beijing Academy of Artificial Intelligence; </span>
+                            <span class="author-block"><sup>4</sup>GalBot; </span>
+                        </div>
+
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>*&#160;</sup>Equal Contribution&#160;&#160;</span>
+                            <span class="author-block"><sup>&#9993;&#160;</sup>Equal Advising&#160;&#160;</span>
+                            <!-- <span class="author-block"><sup>&dagger;&#160;</sup>Project Leader&#160;&#160;</span> -->
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- TODO PDF Link. -->
+                                <span class="link-block">
+                                    <a target="_blank" href="https://arxiv.org/abs/2412.04455"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span>
+
+                                <span class="link-block">
+                                    <a target="_blank" href="https://arxiv.org/pdf/2412.04455"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>PDF</span>
+                                    </a>
+                                </span>
+
+                                <span class="link-block">
+                                    <a href="https://www.youtube.com/watch?v=uiXKfOrfGrQ" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-video"></i>
+                                        </span>
+                                        <span>Video</span>
+                                    </a>
+                                </span>
+
+
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                                    <a target="_blank" href=""
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                    <a target="_blank" href=""
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-database"></i>
+                                        </span>
+                                        <span>Dataset</span>
+                                    </a>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero is-small">
+
+        <div class="hero-body">
+            <div class="container is-max-desktop has-text-centered">
+
+                <h2>
+                    <!-- <h2 class=""> <img src="static/images/highlight_logo.png" width="50"> Highlights</h2> -->
+                    <div class="text-image-container title is-3">
+                        <div>
+                            <img src="assets/images/highlight_logo.png" alt="highlight" width="50">
+                        </div>
+                        <div class="text">
+                            <p>Highlights</p>
+                        </div>
+                    </div>
+                </h2>
+
+
+                <div class="content has-text-justified">
+                    <p>
+                        <ul>
+                            <li><b>
+                                We propose the concept of <span style="color: #E4A902;">compositional constraints</span> for embodied multi-agent systems, addressing the challenges arising from collaboration among embodied agents.
+                                </b></li>
+                            <br>
+                            <li><b>
+                                Leveraging compositional constraints and specifically designed interfaces, we develop an automated data collection framework for embodied multi-agent systems and introduce the <span style="color: #E4A902;">first</span> benchmark for embodied multi-agent manipulation, <span style="color: #E4A902;">RoboFactory</span>.
+                                </b></li>
+                            <br>
+                            <li><b>
+                                Based on RoboFactory, we deploy imitation learning methods and conduct evaluations. and <span style="color: #E4A902;">explore the architectures and training strategies for multi-agent imitation learning</span>, aiming to build safe and efficient embodied multi-agent systems.
+                                </b></li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YouTube Video -->
+    <!-- <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <div class="content">
+                            <h2>
+                                <div class="text-image-container title is-3">
+                                    <div>
+                                        <img src="assets/images/video_logo.png" alt="highlight" width="40">
+                                    </div>
+                                    <div class="text">
+                                        <p>Summary Video</p>
+                                    </div>
+                                </div>
+                            </h2>
+                            <div class="publication-video">
+                                <iframe src="https://www.youtube.com/embed/uiXKfOrfGrQ?rel=0&amp;showinfo=0"
+                                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+
+    <!-- Motivation -->
+    <section class="section hero">
+        <div class="container is-max-desktop">
+            <div class="is-centered has-text-centered">
+                <div class="is-four-fifths">
+                    <h2 class="title is-3">Motivation</h2>
+                    <img src="assets/images/motivation.png" class="interpolation-image" alt=""
+                        style="display: block; margin-left: auto; margin-right: auto" />
+                    <br>
+                    <div class="content has-text-justified">
+                        <p>
+                            When performing the task ``Grab the steak and use the camera to photograph it with 4 embodied agents", 
+                            collaboration among multiple agents is required: a_1 grasps the steak, a_2 and a_3 lift the camera, 
+                            and a_4 presses the shutter to take the photo. However, each agent cannot focus solely on its own task. 
+                            We introduce the concept of compositional constraints to ensure safe and efficient collaboration among the agents. 
+                            <b><span style="color: #209CEF;">Logical constraints</span></b> prevent incorrect interaction forms (e.g., a_3 grabbing the camera lens, causing damage). 
+                                <b><span style="color: #209CEF;">Spatial constraints</span></b> avoid catastrophic hardware damage (e.g., collisions between a_2 and a_3 during trajectory execution). 
+                                    <b><span style="color: #209CEF;">Temporal constraints</span></b> prevent inefficient collaboration (e.g., a_1 waiting unnecessarily due to nonexistent collisions while other agents execute their tasks).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Designing effective embodied multi-agent systems is critical for solving complex real-world tasks across domains.
+                            Due to the complexity of multi-agent embodied systems, existing methods fail to automatically generate safe and efficient training data for such systems.
+                            To this end, we propose the concept of compositional constraints for embodied multi-agent systems, addressing the challenges arising from collaboration among embodied agents.
+                            We design various interfaces tailored to different types of constraints, enabling seamless interaction with the physical world.
+                            Leveraging compositional constraints and specifically designed interfaces, we develop an automated data collection framework for embodied multi-agent systems and introduce the first benchmark for embodied multi-agent manipulation, RoboFactory.
+                            Based on RoboFactory benchmark, we adapt and evaluate the method of imitation learning and analyzed its performance in different difficulty agent tasks.
+                            Furthermore, we explore the architectures and training strategies for multi-agent imitation learning, aiming to build safe and efficient embodied multi-agent systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End paper abstract -->
+
+
+
+    <!-- overview -->
+    <section class="section hero">
+        <div class="container is-max-desktop">
+            <div class="is-centered has-text-centered">
+                <div class="is-four-fifths">
+                    <h2 class="title is-3">Method Overview</h2>
+                    <img src="assets/images/pipeline.png" class="interpolation-image" alt=""
+                        style="display: block; margin-left: auto; margin-right: auto" />
+                    <br>
+                    <div class="content has-text-justified">
+                        <p>
+                            <b>Overview of RoboFactory.</b> Given the global task description, prior information, and observations, RoboBrain generates the 
+                            next sub-goals for each agent and outputs textual compositional constraints. It then generates unconstrained trajectory
+                            sequences for each agent to achieve the corresponding sub-goals, invoking predefined motion primitives. RoboChecker constructs 
+                            corresponding constraint interfaces based on the textual compositional constraints and the current multi-agent state. 
+                            It checks whether the agents violate any constraints while executing the generated trajectories. This framework ensures 
+                            the generation of safe and efficient collaborative data for multi-embodied agents by transforming abstract textual constraints 
+                            into representations that can interact with agent behaviors through the construction of constraint interfaces.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- element -->
+    <section class="section hero">
+        <div class="container is-max-desktop">
+            <div class="is-centered has-text-centered">
+                <div class="is-four-fifths">
+                    <h2 class="title is-3">Constraint Interface</h2>
+                    <img src="assets/images/constraint_interface.png" class="interpolation-image" alt=""
+                        style="display: block; margin-left: auto; margin-right: auto" />
+                    <br>
+                    <div class="content has-text-justified">
+                        <p>
+                            Different Constraint Interface. For C_l, we annotated the interactive points of objects and the interactive directions of each point. 
+                            For C_s, we modeled observations to obtain depth maps and used them, along with the robotic arm states, to construct 3D occupancy representations. 
+                            For C_t, we modeled temporal-state representations based on the trajectories of agents at each changing position and used these representations for scheduling through analysis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CLIPort Video -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3 has-text-centered">CLIPort Simulator Demos</h2>
+                <p>
+                    <b>
+                        These demos shows that Code-as-Monitor can successfully <span style="color: #E4A902;">enhance
+                            monitoring of 3D spatial relationships</span> of entities in the environment, <span
+                            style="color: #E4A902;">facilitating both reactive and proactive failure detection</span>
+                        and leading to <span style="color: #E4A902;">more accurate counting</span>.
+                    </b>
+                </p>
+
+                <br>
+                <div class="has-text-centered">
+                    <p><b>Task: Stack in Order. Disturbances: Placement noise.</b></p>
+                </div>
+                <br>
+
+                <div class="video-row">
+                    <div class="video-container">
+                        <video autoplay playsinline controls muted loop>
+                            <source src="assets/videos/stack_in_order_with_placement_dist.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description"><b>Our Method</b></div>
+                    </div>
+
+                    <div class="video-container">
+                        <video autoplay playsinline controls muted loop>
+                            <source src="assets/videos/stack_in_order_with_placement_dist_doremi.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description"><b>DoReMi Baseline:</b> Frequent VLM queries lead to increased
+                            incorrect failure judgments due to a limited 3D spatial understanding from single.</div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="divider"></div>
+
+                    <div class="video-container">
+                        <video autoplay playsinline controls muted loop>
+                            <source src="assets/videos/stack_in_order_with_placement_dist_max.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description"><b>Our Method</b> under the most severe disturbance.</div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="has-text-centered">
+                    <p><b>Task: Stack in Order. Disturbances: Random drop.</b></p>
+                </div>
+                <br>
+                <div class="video-row">
+                    <div class="video-container">
+                        <video autoplay playsinline controls muted loop>
+                            <source src="assets/videos/stack_in_order_with_random_drop.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description"><b>Our Method</b></div>
+                    </div>
+
+                    <div class="video-container">
+                        <video autoplay playsinline controls muted loop>
+                            <source src="assets/videos/stack_in_order_with_random_drop_im.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description"><b>Inner Monologue Baseline:</b> Only detects failures upon subgoal
+                            completion.</div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="divider"></div>
+
+                    <div class="video-container">
+                        <video autoplay playsinline controls muted loop>
+                            <source src="assets/videos/stack_in_order_with_random_drop_max.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description"><b>Our Method</b> under the most severe disturbance.</div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="has-text-centered">
+                    <p><b>Task: Sweep half the blocks</b></p>
+                </div>
+                <br>
+                <div class="video-row">
+                    <div class="video-container">
+                        <video autoplay playsinline controls muted loop>
+                            <source src="assets/videos/sweep_half_the_blocks.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description"><b>Our Method</b></div>
+                    </div>
+
+                    <div class="video-container">
+                        <video autoplay playsinline controls muted loop>
+                            <source src="assets/videos/sweep_half_the_blocks_im.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description"><b>DoReMi Baseline:</b> Directly using VLM to count blocks fails to
+                            complete the task.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Omnigibson Video 
+    <section class="hero is-small">
+
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3 has-text-centered">Omnigibson Simulator Demos</h2>
+                <p> <b>
+                        These demos shows that Code-as-Monitor can <span style="color: #E4A902;">detect richer
+                            failures</span> (e.g., point, line, surface-level disturbances) with <span
+                            style="color: #E4A902;">lower computational cost</span> compared to frequent querying VLMs.
+                    </b></p>
+
+                <div id="results-carousel-teaser1" class="carousel results-carousel">
+                    <div class="item item-video7">
+                        <video poster="" id="video7" autoplay playsinline controls muted loop height="100%">
+                            <source src="assets/videos/Slot_pen.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-video8">
+                        <video poster="" id="video8" autoplay playsinline controls muted loop height="100%">
+                            <source src="assets/videos/Stow_book.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-video9">
+                        <video poster="" id="video9" autoplay playsinline controls muted loop height="100%">
+                            <source src="assets/videos/Pour_tea.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section> -->
+
+
+
+
+    <section class="hero is-small">
+
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3 has-text-centered">Visualization of RoboChecker</h2>
+                <p style="text-align: justify;">  Demonstration of <i>RoboChecker</i> is showcased in the complete execution of the Take Photo task. By analyzing constraints, <i>RoboChecker</i> generates <b>CheckCode</b>, a composition of multiple interfaces. Specifically, VI stands for <b>Validate Interaction</b>, VD for <b>Validate Direction</b>, VSO for <b>Validate Spatial Occupancy</b>, and VS for <b>Validate Scheduling</b>. The CheckCode returns true only when all interfaces pass validation, indicating that the generated motion trajectory adheres to the compositional constraints. Otherwise, CheckCode identifies the failed interfaces and sends the feedback to <i>RoboBrain</i>.   </p>
+                <br>
+                <div class="item item-video8">
+                    <img src="assets/images/rollout.png" class="interpolation-image" alt=""
+                        style="display: block; margin-left: auto; margin-right: auto" />
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DP -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <h2 class="title is-3 has-text-centered">Multi-agent Inmitation Learning</h2>
+                <br>
+                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px;">
+                    <!-- Left Column: Image -->
+                    <div style="flex: 1; min-width: 250px;">
+                        <img src="assets/images/arch.png" class="interpolation-image" alt=""
+                            style="display: block; margin-left: auto; margin-right: auto; max-width: 100%;" />
+                    </div>
+                    <!-- Right Column: Text -->
+                    <div style="flex: 1; min-width: 250px;">
+                        <p style="text-align: justify;">
+                            We design four multi-embodied agent imitation learning architectures. The <b>Global View</b> in the image input represents the observation containing all agents, and the <b>Local View</b> represents the ego-view observation of each agent. In policy training, <b>Shared Policy</b> indicates that all agents share a policy, and <b>Separate Policy</b> indicates that each agent trains an independent policy.                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code></code></pre>
+        </div>
+    </section>
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                            <!-- You are free to borrow the of this website, we just ask that you link back to this page in
+                            the footer.
+                            <br> This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>. -->
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
