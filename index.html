@@ -57,6 +57,8 @@
     <script src="./static/js/bulma-carousel.min.js"></script>
     <script src="./static/js/bulma-slider.min.js"></script>
     <script src="./static/js/index.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 
@@ -145,7 +147,7 @@
                                         </span>
                                         <span>Code</span>
                                     </a>
-                                    <a target="_blank" href=""
+                                    <a target="_blank" href="https://huggingface.co/datasets/FACEONG/RoboFactory_Dataset"
                                         class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="fas fa-database"></i>
@@ -241,13 +243,22 @@
                     <br>
                     <div class="content has-text-justified">
                         <p>
-                            When performing the task ``Grab the steak and use the camera to photograph it with 4 embodied agents", 
-                            collaboration among multiple agents is required: a_1 grasps the steak, a_2 and a_3 lift the camera, 
-                            and a_4 presses the shutter to take the photo. However, each agent cannot focus solely on its own task. 
-                            We introduce the concept of compositional constraints to ensure safe and efficient collaboration among the agents. 
-                            <b><span style="color: #209CEF;">Logical constraints</span></b> prevent incorrect interaction forms (e.g., a_3 grabbing the camera lens, causing damage). 
-                                <b><span style="color: #209CEF;">Spatial constraints</span></b> avoid catastrophic hardware damage (e.g., collisions between a_2 and a_3 during trajectory execution). 
-                                    <b><span style="color: #209CEF;">Temporal constraints</span></b> prevent inefficient collaboration (e.g., a_1 waiting unnecessarily due to nonexistent collisions while other agents execute their tasks).
+                            When performing the task "Grab the steak and use the camera to photograph it with 4 embodied agents",  
+                            collaboration among multiple agents is required:  
+                            \( a_1 \) grasps the steak, \( a_2 \) and \( a_3 \) lift the camera,  
+                            and \( a_4 \) presses the shutter to take the photo.  
+                            However, each agent cannot focus solely on its own task.  
+                            We introduce the concept of compositional constraints to ensure safe and efficient collaboration among the agents.  
+
+                            <b><span style="color: #209CEF;">Logical constraints</span></b> prevent incorrect interaction forms  
+                            (e.g., \( a_3 \) grabbing the camera lens, causing damage).  
+
+                            <b><span style="color: #209CEF;">Spatial constraints</span></b> avoid catastrophic hardware damage  
+                            (e.g., collisions between \( a_2 \) and \( a_3 \) during trajectory execution).  
+
+                            <b><span style="color: #209CEF;">Temporal constraints</span></b> prevent inefficient collaboration  
+                            (e.g., \( a_1 \) waiting unnecessarily due to nonexistent collisions while other agents execute their tasks).  
+
                         </p>
                     </div>
                 </div>
@@ -317,9 +328,12 @@
                     <br>
                     <div class="content has-text-justified">
                         <p>
-                            Different Constraint Interface. For C_l, we annotated the interactive points of objects and the interactive directions of each point. 
-                            For C_s, we modeled observations to obtain depth maps and used them, along with the robotic arm states, to construct 3D occupancy representations. 
-                            For C_t, we modeled temporal-state representations based on the trajectories of agents at each changing position and used these representations for scheduling through analysis.
+                            <b>Different Constraint Interface.</b>  
+                            For \( C_l \), we annotated the interactive points of objects and the interactive directions of each point.  
+                            For \( C_s \), we modeled observations to obtain depth maps and used them, along with the robotic arm states,  
+                            to construct 3D occupancy representations.  
+                            For \( C_t \), we modeled temporal-state representations based on the trajectories of agents at each changing position  
+                            and used these representations for scheduling through analysis.                              
                         </p>
                     </div>
                 </div>
@@ -332,7 +346,7 @@
     <section class="hero is-small">
         <div class="hero-body">
             <div class="container is-max-desktop">
-                <h2 class="title is-3 has-text-centered">CLIPort Simulator Demos</h2>
+                <h2 class="title is-3 has-text-centered">Multi-agent Collaboration Demos</h2>
                 <p>
                     <b>
                         These demos shows that Code-as-Monitor can successfully <span style="color: #E4A902;">enhance
@@ -351,7 +365,7 @@
                 <div class="video-row">
                     <div class="video-container">
                         <video autoplay playsinline controls muted loop>
-                            <source src="assets/videos/stack_in_order_with_placement_dist.mp4" type="video/mp4">
+                            <source src="assets/videos/take_photo_a1.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="description"><b>Our Method</b></div>
@@ -359,19 +373,39 @@
 
                     <div class="video-container">
                         <video autoplay playsinline controls muted loop>
-                            <source src="assets/videos/stack_in_order_with_placement_dist_doremi.mp4" type="video/mp4">
+                            <source src="assets/videos/take_photo_a2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="description"><b>DoReMi Baseline:</b> Frequent VLM queries lead to increased
                             incorrect failure judgments due to a limited 3D spatial understanding from single.</div>
                     </div>
-
-                    <!-- Divider -->
-                    <div class="divider"></div>
+                </div>
+                    
+                <div class="video-row">
+                    <div class="video-container">
+                        <video autoplay playsinline controls muted loop>
+                            <source src="assets/videos/take_photo_a3.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description"><b>Our Method</b></div>
+                    </div>
 
                     <div class="video-container">
                         <video autoplay playsinline controls muted loop>
-                            <source src="assets/videos/stack_in_order_with_placement_dist_max.mp4" type="video/mp4">
+                            <source src="assets/videos/take_photo_a4.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="description"><b>DoReMi Baseline:</b> Frequent VLM queries lead to increased
+                            incorrect failure judgments due to a limited 3D spatial understanding from single.</div>
+                    </div>
+                </div>
+
+                <div class="video-row">
+                    <!-- Divider
+                    <div class="divider"></div> -->
+                    <div class="video-container-big">
+                        <video autoplay playsinline controls muted loop>
+                            <source src="assets/videos/take_photo_global.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="description"><b>Our Method</b> under the most severe disturbance.</div>
@@ -386,7 +420,7 @@
                 <div class="video-row">
                     <div class="video-container">
                         <video autoplay playsinline controls muted loop>
-                            <source src="assets/videos/stack_in_order_with_random_drop.mp4" type="video/mp4">
+                            <source src="assets/videos/Food_Place.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="description"><b>Our Method</b></div>
@@ -394,34 +428,17 @@
 
                     <div class="video-container">
                         <video autoplay playsinline controls muted loop>
-                            <source src="assets/videos/stack_in_order_with_random_drop_im.mp4" type="video/mp4">
+                            <source src="assets/videos/pick_barrier.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="description"><b>Inner Monologue Baseline:</b> Only detects failures upon subgoal
                             completion.</div>
                     </div>
-
-                    <!-- Divider -->
-                    <div class="divider"></div>
-
-                    <div class="video-container">
-                        <video autoplay playsinline controls muted loop>
-                            <source src="assets/videos/stack_in_order_with_random_drop_max.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="description"><b>Our Method</b> under the most severe disturbance.</div>
-                    </div>
                 </div>
-
-                <br>
-                <div class="has-text-centered">
-                    <p><b>Task: Sweep half the blocks</b></p>
-                </div>
-                <br>
                 <div class="video-row">
                     <div class="video-container">
                         <video autoplay playsinline controls muted loop>
-                            <source src="assets/videos/sweep_half_the_blocks.mp4" type="video/mp4">
+                            <source src="assets/videos/Two_rb_stack_cube.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="description"><b>Our Method</b></div>
