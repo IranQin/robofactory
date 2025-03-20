@@ -353,16 +353,15 @@
                 <h2 class="title is-3 has-text-centered">Multi-agent Collaboration Demos</h2>
                 <p>
                     <b>
-                        These demos shows that Code-as-Monitor can successfully <span style="color: #E4A902;">enhance
-                            monitoring of 3D spatial relationships</span> of entities in the environment, <span
-                            style="color: #E4A902;">facilitating both reactive and proactive failure detection</span>
-                        and leading to <span style="color: #E4A902;">more accurate counting</span>.
+                        These videos demonstrate that by introducing <i>compositional constraints</i> , RoboFactory 
+                        can <span style="color: #E4A902;">prevent collisions between robotic arms</span> and <span style="color: #E4A902;">efficiently and effectively complete 
+                        various collaborative tasks</span> involving multiple embodied agents.
                     </b>
                 </p>
 
                 <br>
                 <div class="has-text-centered">
-                    <p><b>Task: Stack in Order. Disturbances: Placement noise.</b></p>
+                    <p><b>Task: Take Photo.</b></p>
                 </div>
                 <br>
 
@@ -372,7 +371,7 @@
                             <source src="assets/videos/take_photo_a1.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="description"><b>Our Method</b></div>
+                        <div class="description">Observation of Agent1.</div>
                     </div>
 
                     <div class="video-container">
@@ -380,8 +379,7 @@
                             <source src="assets/videos/take_photo_a2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="description"><b>DoReMi Baseline:</b> Frequent VLM queries lead to increased
-                            incorrect failure judgments due to a limited 3D spatial understanding from single.</div>
+                        <div class="description">Observation of Agent2.</div>
                     </div>
                 </div>
                     
@@ -391,7 +389,7 @@
                             <source src="assets/videos/take_photo_a3.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="description"><b>Our Method</b></div>
+                        <div class="description">Observation of Agent3.</div>
                     </div>
 
                     <div class="video-container">
@@ -399,8 +397,7 @@
                             <source src="assets/videos/take_photo_a4.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="description"><b>DoReMi Baseline:</b> Frequent VLM queries lead to increased
-                            incorrect failure judgments due to a limited 3D spatial understanding from single.</div>
+                        <div class="description">Observation of Agent4.</div>
                     </div>
                 </div>
 
@@ -412,13 +409,13 @@
                             <source src="assets/videos/take_photo_global.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="description"><b>Our Method</b> under the most severe disturbance.</div>
+                        <div class="description">Global observation.</div>
                     </div>
                 </div>
 
                 <br>
                 <div class="has-text-centered">
-                    <p><b>Task: Stack in Order. Disturbances: Random drop.</b></p>
+                    <p><b>Other Tasks.</b></p>
                 </div>
                 <br>
                 <div class="video-row">
@@ -427,7 +424,7 @@
                             <source src="assets/videos/Food_Place.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="description"><b>Our Method</b></div>
+                        <div class="description">Task: Place Food.</div>
                     </div>
 
                     <div class="video-container">
@@ -435,8 +432,7 @@
                             <source src="assets/videos/pick_barrier.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="description"><b>Inner Monologue Baseline:</b> Only detects failures upon subgoal
-                            completion.</div>
+                        <div class="description">Task: Lift Barrier.</div>
                     </div>
                 </div>
                 <div class="video-row">
@@ -445,7 +441,7 @@
                             <source src="assets/videos/Two_rb_stack_cube.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="description"><b>Our Method</b></div>
+                        <div class="description">Task: Two Robots Stack Cube.</div>
                     </div>
 
                     <div class="video-container">
@@ -453,8 +449,7 @@
                             <source src="assets/videos/sweep_half_the_blocks_im.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <div class="description"><b>DoReMi Baseline:</b> Directly using VLM to count blocks fails to
-                            complete the task.</div>
+                        <div class="description">Task:</div>
                     </div>
                 </div>
             </div>
